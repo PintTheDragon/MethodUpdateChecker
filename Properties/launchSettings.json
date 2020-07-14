@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "MethodUpdateChecker": {
+      "commandName": "Project"
+    }
+  }
+}
