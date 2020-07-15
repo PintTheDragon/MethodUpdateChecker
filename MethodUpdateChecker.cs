@@ -15,13 +15,12 @@ namespace MethodUpdateChecker
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using ICSharpCode.Decompiler;
     using ICSharpCode.Decompiler.CSharp;
     using ICSharpCode.Decompiler.TypeSystem;
 
-    class MethodUpdateChecker
+    public class MethodUpdateChecker
     {
         private static string getMethod(string id, CSharpDecompiler decompiler)
         {
@@ -148,28 +147,6 @@ namespace MethodUpdateChecker
                 return split[0] + "." + split[1] + "(" + String.Join(", ", split[2].Split(",")) + ")";
             }
             return "";
-        }
-
-        private static void Main(string[] args)
-        {
-            if(args.Length != 3)
-            {
-                Console.Write("Usage: MethodUpdateChecker.exe Assembly-1.dll Assembly-2.dll methods.txt");
-                return;
-            }
-
-            CSharpDecompiler decompiler = new CSharpDecompiler(args[0], new DecompilerSettings());
-            CSharpDecompiler decompiler2 = new CSharpDecompiler(args[1], new DecompilerSettings());
-            int counter = 0;
-            string line;
-            StreamReader file = new StreamReader(args[2]);
-            while ((line = file.ReadLine()) != null)
-            {
-                string text = line;
-                Console.WriteLine(compareRich(text, decompiler, decompiler2));
-                counter++;
-            }
-            file.Close();
         }
     }
 }
